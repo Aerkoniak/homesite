@@ -23,18 +23,16 @@ app.get('/connection', (req, res) => {
 
 app.use('/email', (req, res) => {
         let mail = JSON.parse(req.body.data)
-        console.log(mail);
 
         async function main() {
             let info = await transport.sendMail({
-                from: `<kontakt@lunnier.com>`,
-                to: `lunnier@gmail.com`,
+                from: process.env.MAIL_FROM,
+                to: process.env.MAIL_TO,
                 subject: `Wiadomość ze strony o tytule: ${mail.title}`,
                 text: `${mail.msg}
                 
                 Autor: ${mail.author}`,
             })
-            console.log(`Wiadomość wysłana`);
             res.json({ sended: true })
         }
 
