@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const transport = require('./transporter');
+require('dotenv').config()
+
 
 
 const publicPath = path.join(__dirname, "/", "build");
@@ -26,7 +28,7 @@ app.use('/email', (req, res) => {
 
         async function main() {
             let info = await transport.sendMail({
-                from: process.env.MAIL_FROM,
+                from: `<${process.env.MAIL_FROM}>`,
                 to: process.env.MAIL_TO,
                 subject: `Wiadomość ze strony o tytule: ${mail.title}`,
                 text: `${mail.msg}
