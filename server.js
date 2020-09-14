@@ -28,7 +28,7 @@ app.use('/email', (req, res) => {
 
         async function main() {
             let info = await transport.sendMail({
-                from: `<${process.env.MAIL_FROM}>`,
+                from: `<${process.env.MAIL_SENDER}>`,
                 to: process.env.MAIL_TO,
                 subject: `Wiadomość ze strony o tytule: ${mail.title}`,
                 text: `${mail.msg}
